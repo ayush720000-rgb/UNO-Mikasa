@@ -1,0 +1,19 @@
+# One-click deploy: Render dashboard -> New -> Blueprint -> pick this repo.
+# Render reads this file, asks you for TELEGRAM_BOT_TOKEN, and builds + starts the bot.
+services:
+  - type: web
+    name: uno-bot
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python bot.py
+    healthCheckPath: /health
+    autoDeployTrigger: commit
+    envVars:
+      # python-telegram-bot 13.x does not work on Python 3.13+ (Render's default
+      # is 3.14), so Python is pinned here and in .python-version.
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      # Your bot token from @BotFather. Render prompts for it on first deploy.
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
