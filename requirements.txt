@@ -1,0 +1,6 @@
+# The job-queue extra pulls in APScheduler 3.11, which no longer imports pkg_resources,
+# so the old setuptools pin is not needed any more.
+python-telegram-bot[job-queue]==22.8
+pony==0.7.20
+# Postgres driver for Neon (DATABASE_URL). 2.9.13 ships Python 3.14 wheels.
+psycopg2-binary==2.9.13

@@ -1,0 +1,5 @@
+__pycache__
+*.pyc
+uno.sqlite3
+config.json
+test

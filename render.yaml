@@ -1,0 +1,17 @@
+# Render Blueprint for the standalone UNO bot. Render -> New -> Blueprint -> pick this repo.
+services:
+  - type: web
+    name: uno-bot
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    autoDeployTrigger: commit
+    envVars:
+      - key: TOKEN
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: ADMIN_LIST
+        sync: false
